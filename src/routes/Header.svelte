@@ -6,7 +6,7 @@
 
 <header>
 	<div class="corner">
-		<a href="https://pump.fun">
+		<a href="https://www.a47g.com/grafana/">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>

@@ -1,0 +1,40 @@
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name a47g.com www.a47g.com;
+
+    ssl_certificate /etc/letsencrypt/live/a47g.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/a47g.com/privkey.pem;
+
+    root /var/www/a47g.com;
+    index index.html;
+
+    # Grafana 反向代理
+    location /grafana/ {
+        proxy_pass http://8.209.203.167:3000/; # Grafana 的 HTTP 地址
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # 静态文件
+    location / {
+        try_files $uri $uri/ =404;
+        add_header Cache-Control "no-cache";
+    }
+
+    location /_app/ {
+        alias /var/www/a47g.com/_app/;
+        expires max;
+        add_header Cache-Control "public, immutable";
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name a47g.com www.a47g.com;
+    
+    return 301 https://$host$request_uri;
+}
