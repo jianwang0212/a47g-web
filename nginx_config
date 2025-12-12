@@ -18,9 +18,9 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    # 静态文件
+    # 静态文件 - 支持 SvelteKit 路由
     location / {
-        try_files $uri $uri/ =404;
+        try_files $uri $uri/ $uri.html /index.html;
         add_header Cache-Control "no-cache";
     }
 
