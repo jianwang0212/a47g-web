@@ -52,9 +52,24 @@
 		return basePrices[symbol] || 100;
 	}
 
-	// 初始化数据
+	// 初始化数据 - 使用标志确保只在组件挂载时运行一次，避免无限循环
+	let hasInitialized = false;
+	
 	$effect(() => {
-		marketData = marketData.map(item => {
+		// 只在首次挂载时初始化，避免重复运行
+		if (hasInitialized) return;
+		hasInitialized = true;
+
+		// 初始化市场数据（使用初始值，不依赖当前 marketData）
+		const initialData: MarketData[] = [
+			{ symbol: 'SPY', name: '标普500 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
+			{ symbol: 'QQQ', name: '纳斯达克100 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
+			{ symbol: 'DIA', name: '道琼斯 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
+			{ symbol: 'BTC', name: '比特币', price: 0, change: 0, changePercent: 0, volume: 0 },
+			{ symbol: 'ETH', name: '以太坊', price: 0, change: 0, changePercent: 0, volume: 0 }
+		];
+
+		marketData = initialData.map(item => {
 			const basePrice = getBasePrice(item.symbol);
 			return {
 				...item,

@@ -10,15 +10,20 @@
 	let isLoading = $state(false);
 	let isOpen = $state(false);
 
-	// 初始化欢迎消息
+	// 初始化欢迎消息 - 使用数组重新赋值确保响应性，避免使用 push()
+	let hasInitialized = false;
+	
 	$effect(() => {
-		if (messages.length === 0) {
-			messages.push({
-				role: 'assistant',
-				content: '你好！我是牛菲特和银芒格的AI交易助手。我可以帮你解答关于算法交易、高频交易、量化策略、风险管理等方面的问题。有什么我可以帮助你的吗？',
-				timestamp: new Date()
-			});
-		}
+		// 只在首次挂载且消息为空时初始化
+		if (hasInitialized || messages.length > 0) return;
+		hasInitialized = true;
+		
+		// 使用数组重新赋值而不是 push()，确保 Svelte 5 的响应性正常工作
+		messages = [{
+			role: 'assistant',
+			content: '你好！我是牛菲特和银芒格的AI交易助手。我可以帮你解答关于算法交易、高频交易、量化策略、风险管理等方面的问题。有什么我可以帮助你的吗？',
+			timestamp: new Date()
+		}];
 	});
 
 	async function sendMessage() {
