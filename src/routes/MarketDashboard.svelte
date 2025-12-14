@@ -11,9 +11,7 @@
 	let marketData = $state<MarketData[]>([
 		{ symbol: 'SPY', name: '标普500 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
 		{ symbol: 'QQQ', name: '纳斯达克100 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
-		{ symbol: 'DIA', name: '道琼斯 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
-		{ symbol: 'BTC', name: '比特币', price: 0, change: 0, changePercent: 0, volume: 0 },
-		{ symbol: 'ETH', name: '以太坊', price: 0, change: 0, changePercent: 0, volume: 0 }
+		{ symbol: 'BTC', name: '比特币', price: 0, change: 0, changePercent: 0, volume: 0 }
 	]);
 
 	let lastUpdate = $state<Date | null>(null);
@@ -45,9 +43,7 @@
 		const basePrices: Record<string, number> = {
 			'SPY': 450,
 			'QQQ': 380,
-			'DIA': 350,
-			'BTC': 45000,
-			'ETH': 2500
+			'BTC': 45000
 		};
 		return basePrices[symbol] || 100;
 	}
@@ -64,9 +60,7 @@
 		const initialData: MarketData[] = [
 			{ symbol: 'SPY', name: '标普500 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
 			{ symbol: 'QQQ', name: '纳斯达克100 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
-			{ symbol: 'DIA', name: '道琼斯 ETF', price: 0, change: 0, changePercent: 0, volume: 0 },
-			{ symbol: 'BTC', name: '比特币', price: 0, change: 0, changePercent: 0, volume: 0 },
-			{ symbol: 'ETH', name: '以太坊', price: 0, change: 0, changePercent: 0, volume: 0 }
+			{ symbol: 'BTC', name: '比特币', price: 0, change: 0, changePercent: 0, volume: 0 }
 		];
 
 		marketData = initialData.map(item => {
@@ -142,11 +136,6 @@
 								({item.changePercent >= 0 ? '+' : ''}{item.changePercent.toFixed(2)}%)
 							</span>
 						</div>
-					</div>
-					
-					<div class="volume-section">
-						<span class="volume-label">成交量:</span>
-						<span class="volume-value">{formatNumber(item.volume)}</span>
 					</div>
 				</div>
 			</div>
@@ -292,22 +281,6 @@
 		align-items: center;
 	}
 
-	.volume-section {
-		display: flex;
-		justify-content: space-between;
-		padding-top: 1rem;
-		border-top: 1px solid #e0e0e0;
-		font-size: 0.9rem;
-	}
-
-	.volume-label {
-		color: #666;
-	}
-
-	.volume-value {
-		font-weight: 600;
-		color: #1a1a1a;
-	}
 
 	.dashboard-footer {
 		text-align: center;

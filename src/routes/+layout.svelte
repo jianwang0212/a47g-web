@@ -1,8 +1,17 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import '../app.css';
+	import { language } from '$lib/i18n';
 
 	let { children } = $props();
+	let currentLang = $state('zh');
+	
+	$effect(() => {
+		const unsubscribe = language.subscribe(lang => {
+			currentLang = lang;
+		});
+		return unsubscribe;
+	});
 </script>
 
 <div class="app">
@@ -14,7 +23,7 @@
 
 	<footer>
 		<p>
-			访问 <a href="https://www.zhihu.com/people/zi-yin-96">知乎主页</a> 来了解创始人
+			{currentLang === 'zh' ? 'LY Quant - 量化投资' : 'LY Quant - Quantitative Investment'}
 		</p>
 	</footer>
 </div>
@@ -45,8 +54,9 @@
 		padding: 12px;
 	}
 
-	footer a {
-		font-weight: bold;
+	footer p {
+		color: #6B7280;
+		font-size: 0.9rem;
 	}
 
 	@media (min-width: 480px) {

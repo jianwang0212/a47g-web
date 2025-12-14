@@ -1,129 +1,320 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	import { language, t } from '$lib/i18n';
+	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
+	
+	let isMenuOpen = $state(false);
+	let currentLang = $state('zh');
+	
+	$effect(() => {
+		const unsubscribe = language.subscribe(lang => {
+			currentLang = lang;
+		});
+		return unsubscribe;
+	});
+	
+	function toggleMenu() {
+		isMenuOpen = !isMenuOpen;
+	}
+	
+	function closeMenu() {
+		isMenuOpen = false;
+	}
 </script>
 
-<header>
-	<div class="corner">
-		<a href="https://www.a47g.com/grafana/">
-			<img src={logo} alt="SvelteKit" />
+<header class="header">
+	<div class="header-container">
+		<a href="/" class="logo-link">
+			<div class="logo-text">
+				<span class="logo-name">LY Quant</span>
+				<span class="logo-tagline">Quantitative Investment</span>
+			</div>
 		</a>
+
+		<nav class="nav" aria-label="Main navigation">
+			<ul class="nav-list">
+				<li>
+					<a href="/" class="nav-link" class:active={$page.url.pathname === '/'} onclick={closeMenu}>
+						{t('nav.home', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/team" class="nav-link" class:active={$page.url.pathname === '/team'} onclick={closeMenu}>
+						{t('nav.team', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/strategies" class="nav-link" class:active={$page.url.pathname === '/strategies'} onclick={closeMenu}>
+						{t('nav.strategies', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/performance" class="nav-link" class:active={$page.url.pathname === '/performance'} onclick={closeMenu}>
+						{t('nav.performance', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/insights" class="nav-link" class:active={$page.url.pathname === '/insights'} onclick={closeMenu}>
+						{t('nav.insights', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/philosophy" class="nav-link" class:active={$page.url.pathname === '/philosophy'} onclick={closeMenu}>
+						{t('nav.philosophy', currentLang)}
+					</a>
+				</li>
+				<li>
+					<a href="/contact" class="nav-link" class:active={$page.url.pathname === '/contact'} onclick={closeMenu}>
+						{t('nav.contact', currentLang)}
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="header-actions">
+			<LanguageSwitcher />
+			<a href="/login" class="login-btn">
+				{t('nav.login', currentLang)}
+			</a>
+			<button class="menu-toggle" onclick={toggleMenu} aria-label="Toggle menu" aria-expanded={isMenuOpen}>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
 	</div>
 
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/2025' ? 'page' : undefined}>
-				<a href="/2025">2025</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
-
-	<div class="corner">
-		<a href="https://github.com/jianwang0212">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
+	<!-- Mobile Menu -->
+	{#if isMenuOpen}
+		<div class="mobile-menu">
+			<a href="/" class="mobile-link" class:active={$page.url.pathname === '/'} onclick={closeMenu}>
+				{t('nav.home', currentLang)}
+			</a>
+			<a href="/team" class="mobile-link" class:active={$page.url.pathname === '/team'} onclick={closeMenu}>
+				{t('nav.team', currentLang)}
+			</a>
+			<a href="/strategies" class="mobile-link" class:active={$page.url.pathname === '/strategies'} onclick={closeMenu}>
+				{t('nav.strategies', currentLang)}
+			</a>
+			<a href="/performance" class="mobile-link" class:active={$page.url.pathname === '/performance'} onclick={closeMenu}>
+				{t('nav.performance', currentLang)}
+			</a>
+			<a href="/insights" class="mobile-link" class:active={$page.url.pathname === '/insights'} onclick={closeMenu}>
+				{t('nav.insights', currentLang)}
+			</a>
+			<a href="/philosophy" class="mobile-link" class:active={$page.url.pathname === '/philosophy'} onclick={closeMenu}>
+				{t('nav.philosophy', currentLang)}
+			</a>
+			<a href="/contact" class="mobile-link" class:active={$page.url.pathname === '/contact'} onclick={closeMenu}>
+				{t('nav.contact', currentLang)}
+			</a>
+			<a href="/login" class="mobile-link login" onclick={closeMenu}>
+				{t('nav.login', currentLang)}
+			</a>
+		</div>
+	{/if}
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
+	.header {
+		background: #001F3F;
+		color: white;
+		position: sticky;
 		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
+		z-index: 1000;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	}
 
-	nav a {
+	.header-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 2rem;
 		display: flex;
-		height: 100%;
 		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
+		justify-content: space-between;
+		height: 80px;
 	}
 
-	a:hover {
-		color: var(--color-theme-1);
+	.logo-link {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		text-decoration: none;
+		color: white;
+		transition: opacity 0.2s;
+	}
+
+	.logo-link:hover {
+		opacity: 0.9;
+	}
+
+	.logo-text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.logo-name {
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		color: #FFD700;
+	}
+
+	.logo-tagline {
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.7);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.nav {
+		display: none;
+	}
+
+	.nav-list {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 0.5rem;
+	}
+
+	.nav-link {
+		padding: 0.5rem 1rem;
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 0.95rem;
+		border-radius: 4px;
+		transition: all 0.2s;
+		position: relative;
+	}
+
+	.nav-link:hover {
+		background: rgba(255, 255, 255, 0.1);
+		color: #FFD700;
+	}
+
+	.nav-link.active {
+		color: #FFD700;
+	}
+
+	.nav-link.active::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 60%;
+		height: 2px;
+		background: #FFD700;
+	}
+
+	.header-actions {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.login-btn {
+		padding: 0.5rem 1.5rem;
+		background: linear-gradient(135deg, #D4AF37, #FFD700);
+		color: #001F3F;
+		text-decoration: none;
+		border-radius: 4px;
+		font-weight: 600;
+		font-size: 0.9rem;
+		transition: all 0.2s;
+		white-space: nowrap;
+	}
+
+	.login-btn:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+	}
+
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 4px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0.5rem;
+	}
+
+	.menu-toggle span {
+		width: 24px;
+		height: 2px;
+		background: white;
+		transition: all 0.3s;
+	}
+
+	.mobile-menu {
+		display: none;
+		flex-direction: column;
+		background: #001F3F;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		padding: 1rem 2rem;
+	}
+
+	.mobile-link {
+		padding: 1rem 0;
+		color: rgba(255, 255, 255, 0.9);
+		text-decoration: none;
+		font-weight: 500;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		transition: color 0.2s;
+	}
+
+	.mobile-link:hover,
+	.mobile-link.active {
+		color: #FFD700;
+	}
+
+	.mobile-link.login {
+		background: linear-gradient(135deg, #D4AF37, #FFD700);
+		color: #001F3F;
+		padding: 0.75rem 1.5rem;
+		border-radius: 4px;
+		text-align: center;
+		margin-top: 1rem;
+		border: none;
+	}
+
+	@media (min-width: 1024px) {
+		.nav {
+			display: block;
+		}
+
+		.menu-toggle {
+			display: none;
+		}
+
+		.mobile-menu {
+			display: none !important;
+		}
+	}
+
+	@media (max-width: 1023px) {
+		.header-container {
+			padding: 0 1rem;
+		}
+
+		.logo-text {
+			display: none;
+		}
+
+		.menu-toggle {
+			display: flex;
+		}
+
+		.login-btn {
+			display: none;
+		}
+
+		.mobile-menu {
+			display: flex;
+		}
 	}
 </style>
