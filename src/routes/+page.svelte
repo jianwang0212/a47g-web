@@ -3,6 +3,8 @@
 	import { team, strategies, performance, philosophy } from '$lib/constants';
 	import MarketDashboard from './MarketDashboard.svelte';
 	import AIChatbot from './AIChatbot.svelte';
+	import CompoundInterestCalculator from '$lib/components/CompoundInterestCalculator.svelte';
+	import ActivityMetrics from '$lib/components/ActivityMetrics.svelte';
 	
 	let currentLang = $state('zh');
 	
@@ -58,6 +60,9 @@
 		</div>
 	</div>
 </section>
+
+<!-- Activity Metrics -->
+<ActivityMetrics />
 
 <!-- Investment Strategies Preview -->
 <section class="strategies-preview">
@@ -151,6 +156,13 @@
 		<a href="/team" class="btn btn-outline">
 			{currentLang === 'zh' ? '查看完整团队介绍' : 'View Full Team'} →
 		</a>
+	</div>
+</section>
+
+<!-- Compound Interest Calculator -->
+<section class="calculator-section">
+	<div class="container">
+		<CompoundInterestCalculator />
 	</div>
 </section>
 
@@ -540,6 +552,11 @@
 		color: #6B7280;
 		line-height: 1.6;
 		margin-bottom: 0.5rem;
+	}
+
+	.calculator-section {
+		padding: 6rem 0;
+		background: white;
 	}
 
 	@media (max-width: 768px) {

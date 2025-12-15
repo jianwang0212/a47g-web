@@ -59,7 +59,29 @@ export const strategies = [
 		maxDrawdown: '0%',
 		maxDrawdownEn: '0% (principal protected)',
 		features: ['本金安全优先', '稳健增长', '期权保护策略', '适合风险厌恶型投资者'],
-		featuresEn: ['Principal safety priority', 'Steady growth', 'Options protection strategy', 'Suitable for risk-averse investors']
+		featuresEn: ['Principal safety priority', 'Steady growth', 'Options protection strategy', 'Suitable for risk-averse investors'],
+		detailedDescription: {
+			zh: '缓冲型保本策略采用结构化期权产品设计，通过购买看跌期权和卖出看涨期权的组合，在保证本金100%安全的前提下，获得稳定的收益。该策略的核心特点是牺牲了部分上涨收益空间，但完全消除了本金损失的风险。适合那些将资金安全放在首位的保守型投资者。',
+			en: 'The Buffer Capital Protection Strategy uses structured options products, combining purchased put options and sold call options to achieve stable returns while guaranteeing 100% principal safety. The core feature of this strategy is sacrificing some upside potential in exchange for completely eliminating principal loss risk. Suitable for conservative investors who prioritize capital preservation.'
+		},
+		howItWorks: {
+			zh: [
+				'通过购买看跌期权保护，确保即使市场下跌，本金也不会受损',
+				'同时卖出看涨期权，获得权利金收入，但限制了上涨收益空间',
+				'通常设置10-20%的缓冲区间，在此区间内本金完全保护',
+				'收益主要来源于期权权利金和标的资产的温和上涨'
+			],
+			en: [
+				'Purchase put options for protection, ensuring principal remains intact even in market downturns',
+				'Simultaneously sell call options to generate premium income, but limiting upside potential',
+				'Typically sets a 10-20% buffer zone where principal is fully protected',
+				'Returns primarily come from option premiums and moderate asset appreciation'
+			]
+		},
+		suitableFor: {
+			zh: '适合风险承受能力较低、追求本金安全的投资者，特别是即将退休或需要稳定现金流的投资者。',
+			en: 'Suitable for investors with lower risk tolerance who prioritize capital preservation, especially those approaching retirement or needing stable cash flow.'
+		}
 	},
 	{
 		id: 'longshort',
@@ -72,9 +94,127 @@ export const strategies = [
 		maxDrawdown: '5%',
 		maxDrawdownEn: '5% expected maximum',
 		features: ['多标的、多策略组合', '严格的风险管理', '分散投资', '适合追求更高收益的投资者'],
-		featuresEn: ['Multi-asset, multi-strategy portfolio', 'Strict risk management', 'Diversified investment', 'Suitable for investors seeking higher returns']
+		featuresEn: ['Multi-asset, multi-strategy portfolio', 'Strict risk management', 'Diversified investment', 'Suitable for investors seeking higher returns'],
+		detailedDescription: {
+			zh: '低风险多空策略通过同时持有看涨和看跌头寸，在不同市场环境下都能获得收益。该策略通过多标的资产、多策略组合的方式，有效分散风险，同时通过严格的风险管理控制回撤。虽然存在一定的回撤风险，但预期收益明显高于保本策略，适合追求更高收益且能承受一定波动的投资者。',
+			en: 'The Low-Risk Long-Short Strategy generates returns in various market conditions by simultaneously holding long and short positions. Through multi-asset, multi-strategy diversification, the strategy effectively spreads risk while controlling drawdowns through strict risk management. Although there is some drawdown risk, expected returns are significantly higher than capital protection strategies, suitable for investors seeking higher returns who can tolerate some volatility.'
+		},
+		howItWorks: {
+			zh: [
+				'同时构建看涨和看跌头寸，实现市场中性或低相关性',
+				'通过多标的资产组合（如SPY、QQQ、个股等）分散风险',
+				'采用多种期权策略组合：备兑看涨、保护性看跌、跨式组合等',
+				'严格的风险控制：单笔交易风险不超过总资产的2%，总回撤控制在5%以内',
+				'动态调整仓位，根据市场波动率调整策略参数'
+			],
+			en: [
+				'Simultaneously construct long and short positions to achieve market neutrality or low correlation',
+				'Diversify risk through multi-asset portfolios (e.g., SPY, QQQ, individual stocks)',
+				'Employ multiple options strategies: covered calls, protective puts, straddles, etc.',
+				'Strict risk control: single trade risk limited to 2% of total assets, total drawdown controlled within 5%',
+				'Dynamically adjust positions based on market volatility and strategy parameters'
+			]
+		},
+		suitableFor: {
+			zh: '适合有一定风险承受能力、追求更高收益的投资者，特别是对量化策略有一定了解、能够接受短期波动的成长型投资者。',
+			en: 'Suitable for investors with moderate risk tolerance seeking higher returns, especially growth-oriented investors who understand quantitative strategies and can accept short-term volatility.'
+		}
 	}
 ];
+
+// Strategy Comparison
+export const strategyComparison = {
+	title: {
+		zh: '策略对比',
+		en: 'Strategy Comparison'
+	},
+	comparisonPoints: [
+		{
+			category: {
+				zh: '风险水平',
+				en: 'Risk Level'
+			},
+			buffer: {
+				zh: '极低风险 - 本金100%保护',
+				en: 'Very Low Risk - 100% Principal Protection'
+			},
+			longshort: {
+				zh: '低风险 - 最大回撤5%',
+				en: 'Low Risk - Maximum 5% Drawdown'
+			}
+		},
+		{
+			category: {
+				zh: '预期收益',
+				en: 'Expected Return'
+			},
+			buffer: {
+				zh: '5%-8% 年化收益',
+				en: '5%-8% Annualized Return'
+			},
+			longshort: {
+				zh: '15%-25% 年化收益',
+				en: '15%-25% Annualized Return'
+			}
+		},
+		{
+			category: {
+				zh: '收益来源',
+				en: 'Return Source'
+			},
+			buffer: {
+				zh: '期权权利金 + 有限上涨收益',
+				en: 'Option Premiums + Limited Upside'
+			},
+			longshort: {
+				zh: '多空价差 + 波动率交易',
+				en: 'Long-Short Spreads + Volatility Trading'
+			}
+		},
+		{
+			category: {
+				zh: '市场适应性',
+				en: 'Market Adaptability'
+			},
+			buffer: {
+				zh: '适合震荡和温和上涨市场',
+				en: 'Suitable for Range-bound and Moderate Bull Markets'
+			},
+			longshort: {
+				zh: '适合各种市场环境',
+				en: 'Suitable for Various Market Conditions'
+			}
+		},
+		{
+			category: {
+				zh: '投资期限',
+				en: 'Investment Horizon'
+			},
+			buffer: {
+				zh: '建议1-3年',
+				en: 'Recommended 1-3 Years'
+			},
+			longshort: {
+				zh: '建议3-5年',
+				en: 'Recommended 3-5 Years'
+			}
+		},
+		{
+			category: {
+				zh: '适合投资者',
+				en: 'Target Investors'
+			},
+			buffer: {
+				zh: '风险厌恶型、保守型投资者',
+				en: 'Risk-Averse, Conservative Investors'
+			},
+			longshort: {
+				zh: '追求收益、能承受波动的成长型投资者',
+				en: 'Return-Seeking, Growth-Oriented Investors Who Can Tolerate Volatility'
+			}
+		}
+	]
+};
 
 // Performance Data
 export const performance = {
