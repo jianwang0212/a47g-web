@@ -32,9 +32,9 @@ export const translations = {
 };
 
 export function t(key: string, lang?: Language | string): string {
-	const language = (lang === 'zh' || lang === 'en') ? lang : 'zh';
+	const selectedLang = (lang === 'zh' || lang === 'en') ? lang : 'zh';
 	const keys = key.split('.');
-	let value: any = translations[language as Language];
+	let value: any = translations[selectedLang as Language];
 	
 	for (const k of keys) {
 		if (value && typeof value === 'object') {
