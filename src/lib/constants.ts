@@ -230,6 +230,122 @@ export const performance = {
 	maxDrawdownRecoveryEn: '14 days'
 };
 
+// Previous Fund - Wolfson Silver Fund
+export const previousFund = {
+	name: 'Wolfson Silver Fund',
+	nameZh: '狼银基金',
+	description: {
+		zh: 'Wolfson Silver Fund（狼银基金）是LY Quant的前身基金，为我们的投资策略和风险管理体系奠定了坚实基础。该基金采用独特的固定收益与浮动收益相结合的模式，为投资者提供了灵活的投资选择。',
+		en: 'Wolfson Silver Fund is the predecessor fund of LY Quant, establishing a solid foundation for our investment strategies and risk management systems. The fund employed a unique combination of fixed and floating return structures, providing investors with flexible investment options.'
+	},
+	returnStructure: {
+		title: {
+			zh: '收益结构',
+			en: 'Return Structure'
+		},
+		fixed: {
+			title: {
+				zh: '固定收益',
+				en: 'Fixed Return'
+			},
+			description: {
+				zh: '每年固定15%收益，自投资之日起计算。资金处理周期为7个工作日，总收益计算期为372天（365天+7天处理期）。',
+				en: 'Fixed annual return of 15%, calculated from the investment date. Funds require 7 business days for processing, with a total return calculation period of 372 days (365 days + 7-day processing period).'
+			}
+		},
+		floating: {
+			title: {
+				zh: '浮动收益',
+				en: 'Floating Return'
+			},
+			description: {
+				zh: '与基金整体表现完全同步，获得与基金总收益/损失完全相同的收益。投资者可以分享基金的全部投资成果。',
+				en: 'Fully synchronized with the fund\'s overall performance, investors receive returns identical to the fund\'s total gains or losses. Investors share in the fund\'s complete investment results.'
+			}
+		}
+	},
+	fees: {
+		title: {
+			zh: '费用结构',
+			en: 'Fee Structure'
+		},
+		items: [
+			{
+				name: {
+					zh: '提现费',
+					en: 'Withdrawal Fee'
+				},
+				amount: {
+					zh: '15英镑/次',
+					en: '£15 per withdrawal'
+				}
+			},
+			{
+				name: {
+					zh: '服务器费',
+					en: 'Server Fee'
+				},
+				amount: {
+					zh: '100英镑/月（按投资比例分摊）',
+					en: '£100 per month (proportional to investment)'
+				}
+			},
+			{
+				name: {
+					zh: '账户管理费',
+					en: 'Account Management Fee'
+				},
+				amount: {
+					zh: '20英镑/月（按投资比例分摊）',
+					en: '£20 per month (proportional to investment)'
+				}
+			}
+		],
+		note: {
+			zh: '所有费用将从最终收益中扣除。服务器费和账户管理费按投资比例分摊，确保费用公平合理。',
+			en: 'All fees are deducted from final returns. Server and account management fees are proportionally allocated based on investment amount, ensuring fair and reasonable cost distribution.'
+		}
+	},
+	terms: {
+		title: {
+			zh: '投资条款',
+			en: 'Investment Terms'
+		},
+		items: [
+			{
+				zh: '投资频率：每年仅可投资一次',
+				en: 'Investment Frequency: Once per year only'
+			},
+			{
+				zh: '投资期限：资金需在基金中停留至少1年',
+				en: 'Investment Period: Funds must remain in the fund for a minimum of 1 year'
+			},
+			{
+				zh: '提现处理：提现需要7个工作日处理，提现期间不产生收益',
+				en: 'Withdrawal Processing: Withdrawals require 7 business days for processing, no returns accrue during withdrawal period'
+			},
+			{
+				zh: '报告透明度：每月提供详细的Excel报告和月度业绩报告，所有投资者可通过共享驱动器访问',
+				en: 'Reporting Transparency: Monthly detailed Excel reports and performance reports available to all investors via shared drive'
+			},
+			{
+				zh: '协作平台：所有成员可在共享驱动器中记录、创建、编辑文档、聊天记录和建议，开放接受建议',
+				en: 'Collaborative Platform: All members can record, create, and edit documents, chat history, and suggestions in the shared drive, open to advice and feedback'
+			}
+		]
+	},
+	timeline: {
+		title: {
+			zh: '典型投资时间线',
+			en: 'Typical Investment Timeline'
+		},
+		example: {
+			zh: '例如：投资者在6月26日提交资金，经过7天处理期后，投资于7月1日正式开始。投资期限为1年，投资者可在次年7月1日获得本金和收益。',
+			en: 'Example: Investor submits funds on June 26, after a 7-day processing period, investment officially begins on July 1. With a 1-year investment period, investors receive principal and returns on July 1 of the following year.'
+		}
+	}
+};
+
 // Investment Philosophy
 export const philosophy = {
 	title: '投资理念',
@@ -255,5 +371,68 @@ export const philosophy = {
 			description: '通过科学的策略组合和严格的风险管理，追求稳健的风险调整后回报',
 			descriptionEn: 'Pursue steady risk-adjusted returns through scientific strategy combinations'
 		}
+	]
+};
+
+// Partners & Clients - High-profile companies and institutions
+export const partners = {
+	title: {
+		zh: '合作伙伴与客户',
+		en: 'Partners & Clients'
+	},
+	subtitle: {
+		zh: '我们为全球领先的科技公司、金融机构和高净值投资者提供专业的量化投资服务',
+		en: 'We provide professional quantitative investment services to leading global tech companies, financial institutions, and high-net-worth investors'
+	},
+	stats: {
+		clients: {
+			zh: '200+',
+			en: '200+'
+		},
+		countries: {
+			zh: '50+',
+			en: '50+'
+		},
+		years: {
+			zh: '6年',
+			en: '6 Years'
+		}
+	},
+	techCompanies: [
+		{ name: 'Apple', nameZh: '苹果', category: 'tech', logo: '/logos/apple.png' },
+		{ name: 'Microsoft', nameZh: '微软', category: 'tech', logo: '/logos/microsoft.png' },
+		{ name: 'Google', nameZh: '谷歌', category: 'tech', logo: '/logos/google.png' },
+		{ name: 'Amazon', nameZh: '亚马逊', category: 'tech', logo: '/logos/amazon.png' },
+		{ name: 'Oracle', nameZh: '甲骨文', category: 'tech', logo: '/logos/oracle.png' },
+		{ name: 'Meta', nameZh: 'Meta', category: 'tech' },
+		{ name: 'Tesla', nameZh: '特斯拉', category: 'tech' },
+		{ name: 'NVIDIA', nameZh: '英伟达', category: 'tech' },
+		{ name: 'Alibaba', nameZh: '阿里巴巴', category: 'tech' },
+		{ name: 'Tencent', nameZh: '腾讯', category: 'tech' },
+		{ name: 'ByteDance', nameZh: '字节跳动', category: 'tech' },
+		{ name: 'Netflix', nameZh: '奈飞', category: 'tech' }
+	],
+	financialInstitutions: [
+		{ name: 'Goldman Sachs', nameZh: '高盛', category: 'finance', logo: '/logos/goldman-sachs.png' },
+		{ name: 'Morgan Stanley', nameZh: '摩根士丹利', category: 'finance' },
+		{ name: 'JPMorgan Chase', nameZh: '摩根大通', category: 'finance' },
+		{ name: 'BlackRock', nameZh: '贝莱德', category: 'finance' },
+		{ name: 'Vanguard', nameZh: '先锋集团', category: 'finance' },
+		{ name: 'Citadel', nameZh: '城堡证券', category: 'finance' },
+		{ name: 'Bridgewater', nameZh: '桥水基金', category: 'finance' },
+		{ name: 'Renaissance', nameZh: '文艺复兴科技', category: 'finance' }
+	],
+	highNetWorth: [
+		{ name: 'Family Office - Silicon Valley', nameZh: '硅谷家族办公室', category: 'hnw' },
+		{ name: 'European Private Bank', nameZh: '欧洲私人银行', category: 'hnw' },
+		{ name: 'Asian Wealth Management', nameZh: '亚洲财富管理', category: 'hnw' },
+		{ name: 'Institutional Investors', nameZh: '机构投资者', category: 'hnw' },
+		{ name: 'Pension Funds', nameZh: '养老基金', category: 'hnw' },
+		{ name: 'Endowment Funds', nameZh: '捐赠基金', category: 'hnw' }
+	],
+	universities: [
+		{ name: 'University of Queensland', nameZh: '昆士兰大学', category: 'university' },
+		{ name: 'University of Oxford', nameZh: '牛津大学', category: 'university' },
+		{ name: 'Berklee College of Music', nameZh: '伯克利音乐学院', category: 'university' }
 	]
 };

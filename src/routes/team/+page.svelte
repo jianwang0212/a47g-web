@@ -30,7 +30,7 @@
 				<div class="member-card">
 					<div class="member-header">
 						{#if founder.avatar}
-							<img src={founder.avatar} alt={founder.name} class="member-avatar" />
+							<img src={founder.avatar} alt={founder.name} class="member-avatar" loading="lazy" />
 						{:else}
 							<div class="member-initial">{founder.initial}</div>
 						{/if}

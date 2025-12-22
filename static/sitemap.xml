@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.a47g.com/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/strategies</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/strategies?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/strategies?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/performance</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/performance?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/performance?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/team</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/team?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/team?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/philosophy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/philosophy?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/philosophy?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/insights</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/insights?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/insights?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/contact</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/contact?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/contact?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/privacy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/privacy?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/privacy?lang=en"/>
+  </url>
+  <url>
+    <loc>https://www.a47g.com/compliance</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.a47g.com/compliance?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.a47g.com/compliance?lang=en"/>
+  </url>
+</urlset>

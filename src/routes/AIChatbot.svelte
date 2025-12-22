@@ -1,27 +1,32 @@
 <script lang="ts">
-	interface Message {
-		role: 'user' | 'assistant';
-		content: string;
-		timestamp: Date;
-	}
+	import { language } from '$lib/i18n';
+	import { getAIResponse, type Message } from '$lib/ai-assistant';
 
 	let messages = $state<Message[]>([]);
 	let input = $state('');
 	let isLoading = $state(false);
 	let isOpen = $state(false);
+	let currentLang = $state<'zh' | 'en'>('zh');
 
-	// 初始化欢迎消息 - 使用数组重新赋值确保响应性，避免使用 push()
+	// 初始化欢迎消息
 	let hasInitialized = false;
 	
 	$effect(() => {
-		// 只在首次挂载且消息为空时初始化
+		const unsubscribe = language.subscribe(lang => {
+			currentLang = lang === 'zh' ? 'zh' : 'en';
+		});
+		return unsubscribe;
+	});
+	
+	$effect(() => {
 		if (hasInitialized || messages.length > 0) return;
 		hasInitialized = true;
 		
-		// 使用数组重新赋值而不是 push()，确保 Svelte 5 的响应性正常工作
 		messages = [{
 			role: 'assistant',
-			content: '你好！我是牛菲特和银芒格的AI交易助手。我可以帮你解答关于算法交易、高频交易、量化策略、风险管理等方面的问题。有什么我可以帮助你的吗？',
+			content: currentLang === 'zh'
+				? '你好！我是LY Quant的AI交易助手。我可以帮你解答关于量化投资、算法交易、风险管理等方面的问题。有什么我可以帮助你的吗？'
+				: 'Hello! I am LY Quant\'s AI trading assistant. I can help answer questions about quantitative investment, algorithmic trading, risk management, etc. How can I help you?',
 			timestamp: new Date()
 		}];
 	});
@@ -40,8 +45,16 @@
 		input = '';
 		isLoading = true;
 
+		// Auto scroll to bottom
+		setTimeout(() => {
+			const messagesContainer = document.getElementById('messages');
+			if (messagesContainer) {
+				messagesContainer.scrollTop = messagesContainer.scrollHeight;
+			}
+		}, 100);
+
 		try {
-			const response = await getAIResponse(currentInput, messages.slice(0, -1));
+			const response = await getAIResponse(currentInput, messages.slice(0, -1), currentLang);
 			messages = [
 				...messages,
 				{
@@ -50,12 +63,22 @@
 					timestamp: new Date()
 				}
 			];
+			
+			// Auto scroll after response
+			setTimeout(() => {
+				const messagesContainer = document.getElementById('messages');
+				if (messagesContainer) {
+					messagesContainer.scrollTop = messagesContainer.scrollHeight;
+				}
+			}, 100);
 		} catch (error) {
 			messages = [
 				...messages,
 				{
 					role: 'assistant',
-					content: '抱歉，我遇到了一些技术问题。请稍后再试。',
+					content: currentLang === 'zh' 
+						? '抱歉，我遇到了一些技术问题。请稍后再试。'
+						: 'Sorry, I encountered a technical issue. Please try again later.',
 					timestamp: new Date()
 				}
 			];
@@ -64,90 +87,11 @@
 		}
 	}
 
-	async function getAIResponse(userInput: string, history: Message[]): Promise<string> {
-		// 尝试使用OpenAI API（如果配置了API key）
-		const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-		
-		if (apiKey) {
-			try {
-				const response = await fetch('https://api.openai.com/v1/chat/completions', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${apiKey}`
-					},
-					body: JSON.stringify({
-						model: 'gpt-4o-mini',
-						messages: [
-							{
-								role: 'system',
-								content: '你是一位专业的算法交易和量化投资顾问，专门帮助用户理解高频交易、量化策略、风险管理等话题。回答要专业、准确、易懂。'
-							},
-							...history.map(msg => ({
-								role: msg.role,
-								content: msg.content
-							})),
-							{
-								role: 'user',
-								content: userInput
-							}
-						],
-						temperature: 0.7,
-						max_tokens: 500
-					})
-				});
-
-				if (response.ok) {
-					const data = await response.json();
-					return data.choices[0]?.message?.content || '抱歉，我无法生成回复。';
-				}
-			} catch (error) {
-				console.error('OpenAI API error:', error);
-			}
-		}
-
-		// 如果没有API key或API调用失败，使用智能模拟响应
-		return getSimulatedResponse(userInput);
-	}
-
-	function getSimulatedResponse(input: string): string {
-		const lowerInput = input.toLowerCase();
-		
-		// 关键词匹配的智能响应
-		if (lowerInput.includes('高频') || lowerInput.includes('hft')) {
-			return '高频交易(HFT)是一种利用高速计算机和算法在极短时间内执行大量交易的策略。我们公司专注于超低延迟网络和算法优化，能够在毫秒级时间内捕捉市场机会。关键要素包括：1) 超低延迟基础设施 2) 先进的算法 3) 实时数据处理 4) 风险控制系统。';
-		}
-		
-		if (lowerInput.includes('套利') || lowerInput.includes('arbitrage')) {
-			return '跨交易所套利策略通过识别不同交易所之间的价格差异来获利。我们的系统实时监控全球多个交易所的价格，当发现价差超过交易成本时，自动执行买卖操作。这种策略相对风险较低，但需要强大的技术基础设施来确保快速执行。';
-		}
-		
-		if (lowerInput.includes('期权') || lowerInput.includes('option')) {
-			return '期权垂直价差策略通过同时买入和卖出不同执行价格的期权来构建风险可控的投资组合。牛市价差适合看涨市场，熊市价差适合看跌市场。我们使用量化模型来优化价差组合，考虑时间价值衰减(Theta)和波动率(Volatility)等因素。';
-		}
-		
-		if (lowerInput.includes('风险') || lowerInput.includes('risk')) {
-			return '风险管理是算法交易的核心。我们采用多层次风险管理：1) 实时监控持仓和风险指标 2) 设置止损和仓位限制 3) 压力测试和情景分析 4) 实时风险预警系统。我们的系统能够在异常情况下自动平仓或调整策略。';
-		}
-		
-		if (lowerInput.includes('策略') || lowerInput.includes('strategy')) {
-			return '我们主要采用三种策略：1) 量化跨交易所套利 - 利用价格差异 2) 量化期权垂直价差 - 通过期权组合表达市场观点 3) 主观宏观资产配置 - 基于宏观经济分析调整资产配置。每种策略都有其适用场景和风险特征。';
-		}
-		
-		if (lowerInput.includes('团队') || lowerInput.includes('team')) {
-			return '我们的团队由数学家、开发者和工程师组成，每个人都对技术和金融市场充满热情。我们相信智慧工作，通过团队协作和相互信任来创造价值。我们的技术栈包括高性能计算、实时数据处理和先进的算法开发。';
-		}
-		
-		if (lowerInput.includes('技术') || lowerInput.includes('tech')) {
-			return '我们的技术优势包括：1) 超低延迟网络基础设施 2) 自主研发的交易算法 3) 实时数据处理系统 4) 高性能计算平台 5) 自动化风险管理系统。我们完全依靠自有资金和技术进行交易，确保策略的独立性和创新性。';
-		}
-		
-		// 默认响应
-		return '感谢你的问题！作为专业的算法交易公司，我们专注于高频交易、量化策略和风险管理。如果你有关于具体策略、技术实现或风险控制的问题，我很乐意为你详细解答。你也可以访问我们的"投资策略"页面了解更多信息。';
-	}
-
 	function formatTime(date: Date): string {
-		return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+		return date.toLocaleTimeString(currentLang === 'zh' ? 'zh-CN' : 'en-US', { 
+			hour: '2-digit', 
+			minute: '2-digit' 
+		});
 	}
 
 	function toggleChat() {
@@ -172,8 +116,8 @@
 	{#if isOpen}
 		<div class="chat-window">
 			<div class="chat-header">
-				<h3>AI 交易助手</h3>
-				<button class="close-btn" onclick={toggleChat} aria-label="关闭">×</button>
+				<h3>{currentLang === 'zh' ? 'AI 交易助手' : 'AI Trading Assistant'}</h3>
+				<button class="close-btn" onclick={toggleChat} aria-label={currentLang === 'zh' ? '关闭' : 'Close'}>×</button>
 			</div>
 			
 			<div class="messages-container" id="messages">
@@ -201,7 +145,7 @@
 				<input
 					type="text"
 					bind:value={input}
-					placeholder="输入你的问题..."
+					placeholder={currentLang === 'zh' ? '输入你的问题...' : 'Enter your question...'}
 					disabled={isLoading}
 					onkeydown={(e) => {
 						if (e.key === 'Enter' && !e.shiftKey) {
@@ -226,6 +170,11 @@
 		bottom: 2rem;
 		right: 2rem;
 		z-index: 1000;
+	}
+	
+	/* 当聊天窗口打开时，调整ScrollToTop位置避免重叠 */
+	.chat-window {
+		/* 当窗口打开时，通知ScrollToTop调整位置 */
 	}
 
 	.chat-toggle {
@@ -278,6 +227,18 @@
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
+		animation: slideUp 0.3s ease;
+	}
+	
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.chat-header {

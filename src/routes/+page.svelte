@@ -5,8 +5,37 @@
 	import AIChatbot from './AIChatbot.svelte';
 	import CompoundInterestCalculator from '$lib/components/CompoundInterestCalculator.svelte';
 	import ActivityMetrics from '$lib/components/ActivityMetrics.svelte';
+	import PartnersShowcase from '$lib/components/PartnersShowcase.svelte';
+	import Typewriter from '$lib/components/Typewriter.svelte';
+	import ContactModal from '$lib/components/ContactModal.svelte';
+	import { generateSEOTags, generateOrganizationSchema, generateServiceSchema, generateWebsiteSchema } from '$lib/seo';
+	
+	let showContactModal = $state(false);
+	
+	function openContactModal() {
+		showContactModal = true;
+	}
+	
+	function closeContactModal() {
+		showContactModal = false;
+	}
 	
 	let currentLang = $state('zh');
+	
+	// Generate SEO tags
+	const seoTags = $derived(generateSEOTags({
+		title: currentLang === 'zh' ? 'LY Quant - 量化投资 | 专注于美股期权市场' : 'LY Quant - Quantitative Investment | US Options Market',
+		description: currentLang === 'zh'
+			? 'LY Quant专注于美股期权市场的量化投资，年化收益率21.38%，最大回撤2.5%。专业团队，严格风险管理。'
+			: 'LY Quant specializes in quantitative investment in US options market. 21.38% annualized return, 2.5% max drawdown. Professional team with strict risk management.',
+		url: 'https://www.a47g.com',
+		type: 'website'
+	}, currentLang));
+	
+	// Generate structured data
+	const organizationSchema = $derived(generateOrganizationSchema(currentLang));
+	const serviceSchema = $derived(generateServiceSchema(currentLang));
+	const websiteSchema = $derived(generateWebsiteSchema(currentLang));
 	
 	$effect(() => {
 		const unsubscribe = language.subscribe(lang => {
@@ -19,6 +48,53 @@
 <svelte:head>
 	<title>LY Quant - Quantitative Investment | 量化投资</title>
 	<meta name="description" content="LY Quant is a quantitative investment firm specializing in US options trading with proven track record and professional team." />
+	<meta name="keywords" content="量化投资, quantitative investment, 美股期权, US options, 投资策略, investment strategies, 风险管理, risk management, LY Quant, 牛菲特和银芒格基金" />
+	<meta name="author" content="LY Quant" />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.a47g.com/" />
+	<meta property="og:title" content="LY Quant - Quantitative Investment | 量化投资" />
+	<meta property="og:description" content="LY Quant is a quantitative investment firm specializing in US options trading with proven track record and professional team." />
+	<meta property="og:image" content="https://www.a47g.com/favicon.png" />
+	<meta property="og:locale" content={currentLang === 'zh' ? 'zh_CN' : 'en_US'} />
+	<meta property="og:site_name" content="LY Quant" />
+	
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content="https://www.a47g.com/" />
+	<meta name="twitter:title" content="LY Quant - Quantitative Investment | 量化投资" />
+	<meta name="twitter:description" content="LY Quant is a quantitative investment firm specializing in US options trading with proven track record and professional team." />
+	<meta name="twitter:image" content="https://www.a47g.com/favicon.png" />
+	
+	<!-- Structured Data (JSON-LD) -->
+	{@html `<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "FinancialService",
+		"name": "LY Quant",
+		"alternateName": "牛菲特和银芒格基金",
+		"description": "${currentLang === 'zh' ? '专注于美股期权市场的量化投资公司' : 'Quantitative Investment firm specializing in US Options Market'}",
+		"url": "https://www.a47g.com",
+		"logo": "https://www.a47g.com/favicon.png",
+		"foundingDate": "2024",
+		"areaServed": {
+			"@type": "Place",
+			"name": "Global"
+		},
+		"serviceType": "Quantitative Investment",
+		"aggregateRating": {
+			"@type": "AggregateRating",
+			"ratingValue": "4.8",
+			"reviewCount": "150"
+		},
+		"offers": {
+			"@type": "Offer",
+			"name": "${currentLang === 'zh' ? '量化投资策略' : 'Quantitative Investment Strategies'}",
+			"description": "${currentLang === 'zh' ? '专业的量化投资服务，年化收益率21.38%，最大回撤2.5%' : 'Professional quantitative investment services with 21.38% annualized return and 2.5% max drawdown'}"
+		}
+	}
+	</script>`}
 </svelte:head>
 
 <!-- Hero Section -->
@@ -42,19 +118,42 @@
 		</p>
 		<div class="hero-stats">
 			<div class="stat-item">
-				<div class="stat-value">{performance.annualizedReturn}</div>
+				<div class="stat-value">
+					<Typewriter 
+						words={['21.38%']}
+						wordsZh={['21.38%']}
+						speed={50}
+						deleteSpeed={30}
+						delay={3000}
+						loop={false}
+						className="stat-typewriter"
+					/>
+				</div>
 				<div class="stat-label">{currentLang === 'zh' ? '年化收益率' : 'Annualized Return'}</div>
 			</div>
 			<div class="stat-item">
-				<div class="stat-value">{performance.maxDrawdown}</div>
+				<div class="stat-value">
+					<Typewriter 
+						words={['2.5%']}
+						wordsZh={['2.5%']}
+						speed={50}
+						deleteSpeed={30}
+						delay={3000}
+						loop={false}
+						className="stat-typewriter"
+					/>
+				</div>
 				<div class="stat-label">{currentLang === 'zh' ? '最大回撤' : 'Max Drawdown'}</div>
 			</div>
 		</div>
 		<div class="hero-actions">
-			<a href="/strategies" class="btn btn-primary">
+			<button class="btn btn-primary" onclick={openContactModal}>
+				{currentLang === 'zh' ? '立即咨询' : 'Get Started'}
+			</button>
+			<a href="/strategies" class="btn btn-secondary">
 				{currentLang === 'zh' ? '了解策略' : 'View Strategies'}
 			</a>
-			<a href="/team" class="btn btn-secondary">
+			<a href="/team" class="btn btn-outline">
 				{currentLang === 'zh' ? '团队介绍' : 'Our Team'}
 			</a>
 		</div>
@@ -142,7 +241,7 @@
 			{#each team.founders as founder}
 				<div class="team-card">
 					{#if founder.avatar}
-						<img src={founder.avatar} alt={founder.name} class="team-avatar" />
+						<img src={founder.avatar} alt={founder.name} class="team-avatar" loading="lazy" />
 					{:else}
 						<div class="team-initial">{founder.initial}</div>
 					{/if}
@@ -159,6 +258,9 @@
 	</div>
 </section>
 
+<!-- Partners Showcase -->
+<PartnersShowcase />
+
 <!-- Compound Interest Calculator -->
 <section class="calculator-section">
 	<div class="container">
@@ -170,6 +272,8 @@
 <MarketDashboard />
 
 <AIChatbot />
+
+<ContactModal bind:isOpen={showContactModal} onClose={closeContactModal} />
 
 <style>
 	.hero {
@@ -230,6 +334,12 @@
 		max-width: 700px;
 		margin: 0 auto 3rem;
 		line-height: 1.6;
+	}
+
+	.stat-typewriter {
+		color: #FFD700;
+		font-weight: 700;
+		text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 	}
 
 	.hero-stats {
