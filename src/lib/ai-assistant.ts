@@ -12,7 +12,7 @@ const knowledgeBase = {
 	zh: {
 		greetings: ['你好', '您好', 'hi', 'hello', '哈喽', '嗨', '早上好', '下午好', '晚上好', 'good morning', 'good afternoon', 'good evening'],
 		strategies: {
-			keywords: ['策略', 'strategy', '投资策略', 'investment strategy', '套利', 'arbitrage', '期权', 'option', '价差', 'spread', '保本', 'buffer', '多空', 'long short', '对冲', 'hedge', '交易策略', 'trading strategy', '投资方法', 'investment method', '怎么投资', '如何投资', '投资什么', '投资方式', '做什么', '投资哪些', '有哪些', '策略类型', '策略种类', '垂直价差', '跨交易所', '套利策略', '保本策略', '期权策略'],
+			keywords: ['策略', 'strategy', '投资策略', 'investment strategy', '套利', 'arbitrage', '期权', 'option', '价差', 'spread', '保本', 'buffer', '多空', 'long short', '对冲', 'hedge', '交易策略', 'trading strategy', '投资方法', 'investment method', '怎么投资', '如何投资', '投资什么', '投资方式', '做什么', '投资哪些', '有哪些', '策略类型', '策略种类', '垂直价差', '跨交易所', '套利策略', '保本策略', '期权策略', '量化策略', 'quantitative strategy', '交易方法', 'trading method', '投资产品', 'investment product', '做什么投资', '投资方向', '投资标的', '投资品种', '策略介绍', 'strategy introduction', '策略详情', 'strategy details', '策略说明', 'strategy explanation', '策略优势', 'strategy advantage', '策略特点', 'strategy features', '策略收益', 'strategy return', '策略风险', 'strategy risk', '跨市场', 'cross market', '套利机会', 'arbitrage opportunity', '价差交易', 'spread trading', '期权交易', 'options trading', '保本投资', 'capital protection', '本金保护', 'principal protection', '稳健投资', 'stable investment', '低风险', 'low risk', '高收益', 'high return', '投资组合', 'portfolio', '资产配置', 'asset allocation'],
 			responses: [
 				'我们主要提供三种量化投资策略：\n\n**1. 量化跨交易所套利策略**\n   - 利用不同交易所之间的价格差异\n   - 实时监控全球多个交易所\n   - 自动执行买卖操作\n   - 风险相对较低，但需要强大的技术基础设施\n   - 适合追求稳定收益的投资者\n\n**2. 量化期权垂直价差策略**\n   - 通过同时买入和卖出不同执行价格的期权\n   - 牛市价差适合看涨市场\n   - 熊市价差适合看跌市场\n   - 使用量化模型优化价差组合，考虑时间价值衰减和波动率\n   - 预期年化收益率15%-25%\n\n**3. 缓冲型保本策略**\n   - 保证本金100%安全\n   - 预期年化收益率5%-8%\n   - 适合风险厌恶型投资者\n   - 通过期权组合实现本金保护',
 				'我们的策略组合设计考虑了分散投资原则，通过多标的、多策略组合来降低单一市场或资产波动对整体组合的影响。每种策略都有其独特的风险收益特征，我们通过科学的组合管理来优化整体表现。\n\n**策略特点：**\n- 多标的分散：投资多个不同的标的资产\n- 多策略组合：同时运行多种策略\n- 严格风控：每个策略都有独立的风险控制\n- 动态调整：根据市场情况动态调整策略参数',
@@ -20,7 +20,7 @@ const knowledgeBase = {
 			]
 		},
 		risk: {
-			keywords: ['风险', 'risk', '风险管理', 'risk management', '回撤', 'drawdown', '止损', 'stop loss', '风控', '风险控制', '安全', 'safe', '保本', '本金', 'principal', '亏损', 'loss', '最大亏损', 'max loss', '风险等级', 'risk level', '风险承受', 'risk tolerance'],
+			keywords: ['风险', 'risk', '风险管理', 'risk management', '回撤', 'drawdown', '止损', 'stop loss', '风控', '风险控制', '安全', 'safe', '保本', '本金', 'principal', '亏损', 'loss', '最大亏损', 'max loss', '风险等级', 'risk level', '风险承受', 'risk tolerance', '风险控制', 'risk control', '风险防范', 'risk prevention', '风险预警', 'risk warning', '风险监控', 'risk monitoring', '风险限额', 'risk limit', '风险指标', 'risk indicator', '风险分析', 'risk analysis', '风险评估', 'risk assessment', '风险分散', 'risk diversification', '风险对冲', 'risk hedging', '风险敞口', 'risk exposure', '风险偏好', 'risk preference', '保守', 'conservative', '稳健', 'stable', '激进', 'aggressive', '风险厌恶', 'risk averse', '风险中性', 'risk neutral', '风险承受能力', 'risk capacity', '最大回撤', 'maximum drawdown', '回撤控制', 'drawdown control', '回撤恢复', 'drawdown recovery', '止损点', 'stop loss point', '止损策略', 'stop loss strategy', '仓位控制', 'position control', '仓位管理', 'position management', '风险价值', 'var', 'value at risk', '压力测试', 'stress test', '情景分析', 'scenario analysis', '风险模型', 'risk model', '风险度量', 'risk measurement', '风险报告', 'risk report', '风险披露', 'risk disclosure', '投资风险', 'investment risk', '市场风险', 'market risk', '流动性风险', 'liquidity risk', '操作风险', 'operational risk'],
 			responses: [
 				'风险管理是我们投资体系的核心。我们采用多层次风险管理框架：\n\n**1. 实时监控系统**\n   - 实时监控持仓和风险指标\n   - 设置止损和仓位限制\n   - 实时风险预警系统\n   - 24/7不间断监控\n\n**2. 压力测试**\n   - 定期进行压力测试和情景分析\n   - 评估极端市场条件下的表现\n   - 优化风险参数\n   - 模拟各种市场情况\n\n**3. 自动风险控制**\n   - 系统能够在异常情况下自动平仓或调整策略\n   - 多层次的止损机制\n   - 动态仓位管理\n   - 实时风险限额控制\n\n**4. 历史表现**\n   - 年化收益率：21.38%\n   - 最大回撤：2.5%（非常低）\n   - 风险调整后回报表现优异\n   - 最大回撤恢复期仅14天',
 				'我们的风险管理不仅关注单一策略的风险，更注重整体投资组合的风险控制。通过分散投资、安全边际和稳健的预期收益率，我们追求长期稳定的风险调整后回报。\n\n**风险控制措施：**\n- 单策略最大回撤限制\n- 整体组合风险限额\n- 实时VaR（风险价值）监控\n- 自动止损机制\n- 仓位动态调整',
@@ -28,7 +28,7 @@ const knowledgeBase = {
 			]
 		},
 		performance: {
-			keywords: ['业绩', 'performance', '收益', 'return', '回报', '收益率', '年化', 'annualized', '回撤', 'drawdown', '历史表现', 'historical', '数据', 'data', '结果', 'results', '表现', 'track record', '21.38', '2.5', '盈利', 'profit', '赚钱', '赚多少', '收益多少', '回报率', '年化收益', '最大回撤', '历史数据', '交易记录', '投资结果', '投资回报', '收益率多少', '能赚多少', '收益如何', '表现如何'],
+			keywords: ['业绩', 'performance', '收益', 'return', '回报', '收益率', '年化', 'annualized', '回撤', 'drawdown', '历史表现', 'historical', '数据', 'data', '结果', 'results', '表现', 'track record', '21.38', '2.5', '盈利', 'profit', '赚钱', '赚多少', '收益多少', '回报率', '年化收益', '最大回撤', '历史数据', '交易记录', '投资结果', '投资回报', '收益率多少', '能赚多少', '收益如何', '表现如何', '投资业绩', 'investment performance', '历史业绩', 'historical performance', '业绩数据', 'performance data', '业绩报告', 'performance report', '业绩图表', 'performance chart', '收益曲线', 'return curve', '净值曲线', 'nav curve', '累计收益', 'cumulative return', '月度收益', 'monthly return', '季度收益', 'quarterly return', '年度收益', 'annual return', '收益率排名', 'return ranking', '业绩对比', 'performance comparison', '业绩基准', 'performance benchmark', '超额收益', 'excess return', 'alpha', 'beta', '夏普比率', 'sharpe ratio', '索提诺比率', 'sortino ratio', '信息比率', 'information ratio', '卡玛比率', 'calmar ratio', '最大回撤率', 'maximum drawdown rate', '回撤恢复期', 'drawdown recovery period', '胜率', 'win rate', '盈亏比', 'profit loss ratio', '平均收益', 'average return', '波动率', 'volatility', '标准差', 'standard deviation', '风险调整收益', 'risk adjusted return', '投资回报', 'investment return', '投资结果', 'investment result', '投资效果', 'investment effect', '投资表现', 'investment performance', '赚钱能力', 'profitability', '盈利能力', 'earning ability', '收益稳定性', 'return stability', '收益持续性', 'return sustainability', '业绩持续性', 'performance sustainability', '历史回测', 'historical backtest', '回测结果', 'backtest result', '模拟交易', 'simulated trading', '实盘交易', 'live trading', '交易记录', 'trading record', '交易明细', 'trading details', '交易统计', 'trading statistics'],
 			responses: [
 				'我们的历史业绩表现：\n\n**核心数据**\n- 年化收益率：**21.38%**\n- 最大回撤：**2.5%**（非常低）\n- 投资期间：2024.06.01 - 2025.05.13（11个月）\n- 最大回撤恢复期：14天\n- 夏普比率：优秀\n\n**业绩特点**\n- ✅ 风险调整后回报优异\n- ✅ 回撤控制良好（仅2.5%）\n- ✅ 收益稳定性高\n- ✅ 快速恢复能力（14天）\n\n**重要提示**\n过往业绩不代表未来表现，投资有风险，请谨慎决策。',
 				'我们的业绩数据基于实际交易记录，已扣除所有相关费用。我们采用严格的风险管理，确保在追求收益的同时控制回撤。\n\n**为什么我们的业绩优秀？**\n1. 专业的量化模型\n2. 严格的风险控制\n3. 多策略分散投资\n4. 实时监控和调整\n\n您可以访问"业绩展示"页面查看更详细的业绩报告和图表。',
@@ -36,7 +36,7 @@ const knowledgeBase = {
 			]
 		},
 		team: {
-			keywords: ['团队', 'team', '成员', 'member', '创始人', 'founder', '背景', 'background', '谁', 'who', '人员', 'staff', 'Junling', 'Zi Yin', '刘俊凌', '尹子', '经验', 'experience', '学历', 'education', '牛津', 'oxford', '阿里巴巴', 'alibaba', 'citadel'],
+			keywords: ['团队', 'team', '成员', 'member', '创始人', 'founder', '背景', 'background', '谁', 'who', '人员', 'staff', 'Junling', 'Zi Yin', '刘俊凌', '尹子', '经验', 'experience', '学历', 'education', '牛津', 'oxford', '阿里巴巴', 'alibaba', 'citadel', '团队介绍', 'team introduction', '团队成员', 'team members', '核心团队', 'core team', '管理团队', 'management team', '投资团队', 'investment team', '研究团队', 'research team', '技术团队', 'technical team', '团队背景', 'team background', '团队经验', 'team experience', '团队实力', 'team strength', '团队优势', 'team advantage', '团队能力', 'team capability', '专业团队', 'professional team', '资深团队', 'experienced team', '精英团队', 'elite team', '团队规模', 'team size', '团队构成', 'team composition', '团队成员介绍', 'team member introduction', '创始人介绍', 'founder introduction', '核心成员', 'core members', '关键人员', 'key personnel', '投资经理', 'investment manager', '策略经理', 'strategy manager', '风控经理', 'risk manager', '研究总监', 'research director', '技术总监', 'technical director', '交易员', 'trader', '量化研究员', 'quantitative researcher', '算法工程师', 'algorithm engineer', '数据分析师', 'data analyst', '金融工程师', 'financial engineer', '量化分析师', 'quantitative analyst', '投资顾问', 'investment advisor', '投资专家', 'investment expert', '金融专家', 'financial expert', '量化专家', 'quantitative expert', '交易专家', 'trading expert', '期权专家', 'options expert', '套利专家', 'arbitrage expert', '风险管理专家', 'risk management expert', '教育背景', 'educational background', '工作经历', 'work experience', '职业经历', 'career experience', '从业经验', 'professional experience', '行业经验', 'industry experience', '交易经验', 'trading experience', '投资经验', 'investment experience', '量化经验', 'quantitative experience', '期权经验', 'options experience', '套利经验', 'arbitrage experience', '风险管理经验', 'risk management experience', '技术经验', 'technical experience', '研究经验', 'research experience', '学术背景', 'academic background', '专业资质', 'professional qualification', '认证资格', 'certification', '专业证书', 'professional certificate', '从业资格', 'professional qualification', '投资资格', 'investment qualification', '交易资格', 'trading qualification'],
 			responses: [
 				'我们的团队由专业的数学、计算机和金融背景的成员组成：\n\n**核心成员**\n\n**Junling Liu（刘俊凌）**\n- 职位：策略风控负责人\n- 教育：重庆大学本硕计算机与科学硕士\n- 经验：前阿里巴巴天猫技术部研发员 | 5年美股期权量化交易经验\n\n**Zi Yin（尹子）**\n- 职位：策略研发负责人\n- 教育：牛津大学金融系硕士\n- 经验：前Citadel城堡证券交易员 | 多市场交易经验\n\n**团队特点**\n- 深厚的数学和算法基础\n- 丰富的金融交易经验\n- 强大的技术开发能力\n- 对技术和金融市场充满热情\n\n您可以访问"团队介绍"页面了解每位成员的详细信息。',
 				'我们的团队创建3年，成员2人，拥有深厚的量化研究经验和丰富的技术开发能力。凭借全球视野与本地市场的深刻洞察，我们致力于为投资者提供卓越的策略服务。\n\n**工作理念**\n- 智慧工作，通过团队协作创造价值\n- 相互信任，共同成长\n- 持续学习，不断创新\n\n**团队优势**\n- 技术+金融双重背景\n- 大厂+顶级金融机构经验\n- 实战交易经验丰富'
@@ -171,20 +171,33 @@ function findBestMatch(input: string, lang: 'zh' | 'en', history: Message[] = []
 		// Count keyword matches (exact and partial) in both current input and context
 		for (const keyword of categoryData.keywords) {
 			const keywordLower = keyword.toLowerCase();
+			const keywordWords = keywordLower.split(/\s+/);
 			
-			// Check in cleaned input
+			// Exact match gets highest score
 			if (cleanedInput.includes(keywordLower) || lowerInput.includes(keywordLower)) {
-				// Exact match in current input gets highest score
-				if (cleanedInput.includes(keywordLower)) {
-					score += 3;
-				} else {
-					score += 2;
+				score += 4; // Increased from 3
+			}
+			// Partial match (keyword contains multiple words, check if all words appear)
+			else if (keywordWords.length > 1) {
+				const allWordsMatch = keywordWords.every(word => 
+					cleanedInput.includes(word) || lowerInput.includes(word)
+				);
+				if (allWordsMatch) {
+					score += 3; // Good partial match
+				}
+			}
+			// Single word partial match (fuzzy matching)
+			else if (keywordWords.length === 1) {
+				const word = keywordWords[0];
+				// Check if the word appears as a substring in input
+				if (word.length >= 3 && (cleanedInput.includes(word) || lowerInput.includes(word))) {
+					score += 2; // Partial word match
 				}
 			}
 			
-			// Check in context (recent conversation)
+			// Check in context (recent conversation) - increased weight
 			if (recentContext.includes(keywordLower)) {
-				score += 1; // Context match gets lower score but still counts
+				score += 2; // Increased from 1 - context is important
 			}
 		}
 		
@@ -194,7 +207,16 @@ function findBestMatch(input: string, lang: 'zh' | 'en', history: Message[] = []
 			return cleanedInput.includes(kLower) || lowerInput.includes(kLower) || recentContext.includes(kLower);
 		}).length;
 		if (matchCount > 1) {
-			score += matchCount * 1.5; // Bonus multiplier
+			score += matchCount * 2; // Increased bonus multiplier from 1.5 to 2
+		}
+		
+		// Additional bonus for question words that indicate intent
+		const questionWords = lang === 'zh' 
+			? ['什么', '怎么', '如何', '为什么', '哪个', '哪些', '多少', '多久', '什么时候', '哪里', '谁']
+			: ['what', 'how', 'why', 'which', 'when', 'where', 'who', 'how much', 'how many', 'how long'];
+		const hasQuestionWord = questionWords.some(qw => lowerInput.includes(qw));
+		if (hasQuestionWord && matchCount > 0) {
+			score += 3; // Bonus for questions with matching keywords
 		}
 		
 		// Special handling for specific number mentions (performance indicators)
@@ -233,7 +255,8 @@ function findBestMatch(input: string, lang: 'zh' | 'en', history: Message[] = []
 	}
 	
 	// If we found a good match, return a response from that category
-	if (bestCategory && bestScore > 2) {
+	// Lowered threshold from 2 to 1 to catch more matches
+	if (bestCategory && bestScore > 1) {
 		const responses = kb[bestCategory].responses;
 		
 		// Try to avoid repeating the same response from recent history
@@ -257,7 +280,26 @@ function findBestMatch(input: string, lang: 'zh' | 'en', history: Message[] = []
 		return responses[0]; // Return first response for low-confidence matches
 	}
 	
-	// Default response - provide more helpful guidance
+	// Default response - provide more helpful guidance based on context
+	// If we have some context but low confidence, try to provide a contextual response
+	if (bestCategory && bestScore > 0) {
+		const responses = kb[bestCategory].responses;
+		return responses[0]; // Return first response even for very low confidence
+	}
+	
+	// If user asked a question but we couldn't match, provide helpful guidance
+	const questionWords = lang === 'zh' 
+		? ['什么', '怎么', '如何', '为什么', '哪个', '哪些', '多少', '多久', '什么时候', '哪里', '谁', '？', '?']
+		: ['what', 'how', 'why', 'which', 'when', 'where', 'who', 'how much', 'how many', 'how long', '?'];
+	const isQuestion = questionWords.some(qw => lowerInput.includes(qw));
+	
+	if (isQuestion) {
+		return lang === 'zh'
+			? '感谢您的问题！我是LY Quant的AI交易助手。我可以帮您解答关于：\n\n📊 **投资策略**：跨交易所套利、期权价差、保本策略等\n🛡️ **风险管理**：风险控制方法、回撤管理、止损策略等\n📈 **历史业绩**：年化收益率21.38%，最大回撤2.5%\n👥 **团队介绍**：牛津+阿里巴巴背景的专业团队\n💻 **技术优势**：自主研发的量化交易系统\n💰 **费用结构**：透明的费用体系\n📞 **联系方式**：如何开始投资\n\n请告诉我您想了解哪个方面，我会为您详细解答！'
+			: 'Thank you for your question! I am LY Quant\'s AI trading assistant. I can help you with:\n\n📊 **Investment Strategies**: Cross-exchange arbitrage, options spreads, capital protection, etc.\n🛡️ **Risk Management**: Risk control methods, drawdown management, stop-loss strategies, etc.\n📈 **Historical Performance**: 21.38% annualized return, 2.5% max drawdown\n👥 **Team Introduction**: Professional team with Oxford + Alibaba background\n💻 **Technical Advantages**: Proprietary quantitative trading system\n💰 **Fee Structure**: Transparent fee system\n📞 **Contact**: How to get started\n\nPlease tell me what you\'d like to know, and I\'ll provide detailed answers!';
+	}
+	
+	// Final default response
 	const defaultResponses = kb.default;
 	return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }

@@ -13,24 +13,47 @@
 		const adjustPosition = () => {
 			if (!buttonElement) return;
 			
-			// 检查聊天窗口是否打开
+			// 检查聊天窗口是否打开（更精确的检测）
 			const chatWindow = document.querySelector('.chat-window');
 			const chatToggle = document.querySelector('.chat-toggle');
 			
-			// 计算需要的底部位置
-			// 聊天按钮高度60px，ScrollToTop按钮高度50px，需要至少20px间距
-			// 如果聊天窗口打开，窗口高度600px，需要更大的间距
+			// 获取聊天按钮的实际位置和尺寸
+			let chatButtonBottom = 0;
+			let chatButtonHeight = 0;
+			if (chatToggle) {
+				const rect = chatToggle.getBoundingClientRect();
+				chatButtonBottom = window.innerHeight - rect.bottom;
+				chatButtonHeight = rect.height;
+			}
+			
+			// 获取聊天窗口的实际高度
+			let chatWindowHeight = 0;
 			if (chatWindow) {
+				const rect = chatWindow.getBoundingClientRect();
+				chatWindowHeight = rect.height;
+			}
+			
+			// ScrollToTop按钮高度
+			const scrollButtonHeight = 50;
+			const spacing = 20; // 最小间距
+			
+			// 计算需要的底部位置
+			if (chatWindow && chatWindowHeight > 0) {
 				// 聊天窗口打开时，ScrollToTop应该在窗口上方
-				buttonElement.style.bottom = 'calc(600px + 2rem + 20px)';
+				// 窗口底部距离页面底部 = chatButtonBottom + chatButtonHeight + chatWindowHeight
+				// ScrollToTop应该在窗口上方，所以是窗口底部 + spacing
+				const windowBottom = chatButtonBottom + chatButtonHeight + chatWindowHeight;
+				buttonElement.style.bottom = `${windowBottom + spacing}px`;
 			} 
 			// 如果聊天按钮存在（即使窗口未打开），也需要避免重叠
-			else if (chatToggle) {
+			else if (chatToggle && chatButtonHeight > 0) {
 				// 聊天按钮在bottom: 2rem，高度60px
 				// ScrollToTop按钮高度50px，需要至少20px间距
-				// 所以ScrollToTop应该在 2rem + 60px + 20px = 约8rem
-				buttonElement.style.bottom = '8rem';
+				// 所以ScrollToTop应该在 聊天按钮顶部 + spacing
+				const chatButtonTop = chatButtonBottom + chatButtonHeight;
+				buttonElement.style.bottom = `${chatButtonTop + spacing}px`;
 			} else {
+				// 默认位置
 				buttonElement.style.bottom = '2rem';
 			}
 		};
@@ -60,6 +83,7 @@
 		setTimeout(adjustPosition, 100);
 		setTimeout(adjustPosition, 300);
 		setTimeout(adjustPosition, 600);
+		setTimeout(adjustPosition, 1000);
 		
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
