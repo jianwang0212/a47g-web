@@ -4,7 +4,6 @@
 	import MarketDashboard from './MarketDashboard.svelte';
 	import AIChatbot from './AIChatbot.svelte';
 	import CompoundInterestCalculator from '$lib/components/CompoundInterestCalculator.svelte';
-	import ActivityMetrics from '$lib/components/ActivityMetrics.svelte';
 	import PartnersShowcase from '$lib/components/PartnersShowcase.svelte';
 	import Typewriter from '$lib/components/Typewriter.svelte';
 	import ContactModal from '$lib/components/ContactModal.svelte';
@@ -159,9 +158,6 @@
 		</div>
 	</div>
 </section>
-
-<!-- Activity Metrics -->
-<ActivityMetrics />
 
 <!-- Investment Strategies Preview -->
 <section class="strategies-preview">
